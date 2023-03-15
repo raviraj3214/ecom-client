@@ -574,7 +574,7 @@ const CartPage = () => {
       const response = await axiosInstance.post(`api/v1/product/razorpay/payment`, {
         products: cart,
         user_id: auth.user._id,
-        amount: totalPrice(),
+        amount: totalPrice()*100,
         address: auth.user.address,
       });
       setOrderId(response.data.id);
