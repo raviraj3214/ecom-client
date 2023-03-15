@@ -13,7 +13,8 @@ const Orders = () => {
   });
   const getOrders = async () => {
     try {
-      const { data } = await instance.get("/api/v1/auth/orders");
+      const { data } = await instance.post("/api/v1/auth/razorpay-orders",{_id: auth.user._id});
+    
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -44,6 +45,7 @@ const Orders = () => {
                         <th scope="col"> date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Address</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,21 +54,22 @@ const Orders = () => {
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
                         <td>{moment(o?.createAt).fromNow()}</td>
-                        <td>{o?.payment.success ? "Success" : "Failed"}</td>
+                        <td>{o?.status}</td>
                         <td>{o?.products?.length}</td>
+                        <td>{o?.address}</td>
                       </tr>
                     </tbody>
                   </table>
                   <div className="container">
                     {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                      <div className="row mb-4  p-3 card flex-row" key={p._id}>
                         <div className="col-md-4">
                           <img
                             src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            width="100px"
-                            height={"100px"}
+                            width={"25vw"}
+                            height={"190vh"}
                           />
                         </div>
                         <div className="col-md-8">
