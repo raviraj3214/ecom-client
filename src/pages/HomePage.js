@@ -151,7 +151,7 @@ const HomePage = () => {
               className="btn btn-danger"
               onClick={() => window.location.reload()}
             >
-              RESET FILTERSsssss
+              RESET FILTERS
             </button>
           </div>
         </div>
