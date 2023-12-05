@@ -22,9 +22,5 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: pnpm install
-      
-    - name: Build if present
-      run: pnpm run build ||true --if-present
-
     - name: Build
       run: pnpm run build ||true
