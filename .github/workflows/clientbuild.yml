@@ -21,10 +21,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install dependencies
-      run: npm install
+      run: pnpm install
       
     - name: Build if present
-      run: npm run build ||true --if-present
+      run: pnpm run build ||true --if-present
 
     - name: Build
-      run: npm run build ||true
+      run: pnpm run build ||true
