@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: label-1
+    runs-on: self-hosted
     strategy:
       matrix:
         node-version: [18.x]
