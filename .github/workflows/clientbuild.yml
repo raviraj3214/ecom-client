@@ -20,6 +20,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: copy 
+      run: ln -s /root/ecom-client/environ/.env /root/ecom-client/_work/ecom-client/ecom-client    
     - name: Install dependencies
       run: pnpm install
     - name: Build
