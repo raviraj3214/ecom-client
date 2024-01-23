@@ -16,11 +16,8 @@ const Register = () => {
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const instance = axios.create({
-      baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-    });
     try {
-      const res = await instance.post("/api/v1/auth/register", {
+      const res = await axios.post("/api/v1/auth/register", {
         name,
         email,
         password,

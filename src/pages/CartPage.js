@@ -24,9 +24,9 @@ const CartPage = () => {
       cart?.map((item) => {
         return total = total + item.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("en-IN", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       });
     } catch (error) {
       console.log(error);
@@ -50,10 +50,7 @@ const CartPage = () => {
   //get payment gateway token
   const getToken = async () => {
     try {
-      const axiosInstance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await axiosInstance.get("/api/v1/product/braintree/token");
+      const { data } = await axios.get("/api/v1/product/braintree/token");
       setClientToken(data?.clientToken);
     } catch (error) {
       console.log(error);
@@ -67,11 +64,8 @@ const CartPage = () => {
   const handlePayment = async () => {
     try {
       setLoading(true);
-      const axiosInstance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axiosInstance.post("/api/v1/product/braintree/payment", {
+      const { data } = await axios.post("/api/v1/product/braintree/payment", {
         nonce,
         cart,
       });
@@ -114,13 +108,16 @@ const CartPage = () => {
               <div className="card mb-3 mt-2 shadow"  style = {{maxWidth:"24rem"}} key={p._id}>
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`} className="img-fluid rounded-start" alt={p.name}/>
+                  <img src={`/api/v1/product/product-photo/${p._id}`} className="img-fluid rounded-start" alt={p.name}/>
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
                     <h5 className="card-title">{p.name.substring(0,15)}...</h5>
                     <p className="card-text">{p.description.substring(0, 24)}...</p>
-                    <p className="card-text text-muted">Price: {p.price}$</p>
+                    <p className="card-text text-muted">Price: {p.price.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                    })}</p>
                      <button
                                 className="btn btn-danger"
                                 onClick={() => removeCartItem(p._id)}

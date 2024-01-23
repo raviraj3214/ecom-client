@@ -10,10 +10,7 @@ export default function PrivateRoute() {
 
   useEffect(() => {
     const authCheck = async () => {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const res = await instance.get("/api/v1/auth/user-auth");
+      const res = await axios.get("/api/v1/auth/user-auth");
       if (res.data.ok) {
         setOk(true);
       } else {

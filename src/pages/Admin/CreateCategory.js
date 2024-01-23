@@ -15,10 +15,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await instance.post("/api/v1/category/create-category", {
+      const { data } = await axios.post("/api/v1/category/create-category", {
         name,
       });
       if (data?.success) {
@@ -36,10 +33,7 @@ const CreateCategory = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await instance.get("/api/v1/category/get-category");
+      const { data } = await axios.get("/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -57,10 +51,7 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await instance.put(
+      const { data } = await axios.put(
         `/api/v1/category/update-category/${selected._id}`,
         { name: updatedName }
       );
@@ -80,10 +71,7 @@ const CreateCategory = () => {
   //delete category
   const handleDelete = async (pId) => {
     try {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await instance.delete(
+      const { data } = await axios.delete(
         `/api/v1/category/delete-category/${pId}`
       );
       if (data.success) {

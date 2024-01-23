@@ -10,10 +10,7 @@ const Products = () => {
   //getall products
   const getAllProducts = async () => {
     try {
-      const instance = axios.create({
-        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
-      });
-      const { data } = await instance.get("/api/v1/product/get-product");
+      const { data } = await axios.get("/api/v1/product/get-product");
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -42,7 +39,7 @@ const Products = () => {
               >
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`}
+                    src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top" style={{width:"18rem",height:"18rem"}}
                     alt={p.name}
                   />

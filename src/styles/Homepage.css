@@ -10,9 +10,12 @@
 .home-page {
   display: flex;
   flex-wrap: wrap;
+
 }
 .home-page .card {
-  background-color: rgba(128, 128, 128, 0.097);
+  background-color: #ffffff;
+  --bs-card-border-color:#ffffff00;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   width: 18rem;
 }
 .home-page .card-name-price {
