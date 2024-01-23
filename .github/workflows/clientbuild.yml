@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: label-1
+    runs-on: self-hosted
     strategy:
       matrix:
         node-version: [18.x]
@@ -20,11 +20,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: copy 
+      run: ln -s /root/ecom-client/environ/.env /root/ecom-client/_work/ecom-client/ecom-client    
     - name: Install dependencies
-      run: npm install
-      
-    - name: Build if present
-      run: npm run build ||true --if-present
-
+      run: pnpm install
     - name: Build
-      run: npm run build ||true
+      run: pnpm run build ||true
