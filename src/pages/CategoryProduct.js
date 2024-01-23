@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
 import "../styles/CategoryProductStyles.css";
+import Spinner2 from "../components/Spinner/Spin";
 import axios from "axios";
 const CategoryProduct = () => {
   const params = useParams();
@@ -11,12 +12,15 @@ const CategoryProduct = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(true); // Added loading state
 
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
   }, [params?.slug]);
   const getPrductsByCat = async () => {
     try {
+      setLoading(true); // Set loading to true while fetching data
+
       const instance = axios.create({
         baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
       });
@@ -25,10 +29,15 @@ const CategoryProduct = () => {
       );
       setProducts(data?.products);
       setCategory(data?.category);
+      setLoading(true); // Set loading to true while fetching data
+
     } catch (error) {
       console.log(error);
     }
   };
+  if(loading){
+    return (<Spinner2 />)
+  }
 
   return (
     <Layout>

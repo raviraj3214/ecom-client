@@ -7,6 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
+import Slider from "../components/slider/index";
 import "../styles/Homepage.css";
 
 const HomePage = () => {
@@ -124,15 +125,8 @@ const HomePage = () => {
   return (
     <Layout title={"ALl Products - Best offers "}>
       {/* banner image */}
-      < div className="pt-3 pt-md-0 pt-md-0 pt-md-0">
-      <img
-        src="/images/banner2.png"
-        className="banner-img mb-1 pt-4 pt-md-0 "
-        alt="bannerimage"
-        width={"100%"}
-      />
-      
-      {/* banner image */}
+      <div className="pt-3 pt-md-0 pt-md-0 pt-md-0" >
+         <Slider />
       </div>
       <div className="container-fluid row home-page">
       <div className="col-6 col-sm-2 filters p-1 ">
@@ -160,10 +154,11 @@ const HomePage = () => {
           
           <div className="d-flex flex-wrap mob">
   {products?.map((p) => (
-    <div className="card m-md-2 mx-auto my-2 card-mob shadow" style={{ width: "18rem" }} key={p._id}>
+    <div className="card m-md-2 mx-auto my-2 card-mob " style={{ width: "18rem" }} key={p._id}>
       <img
         src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`}
         className="card-img-top"
+        style={{ objectFit: "cover", objectPosition: "center center", }}
         alt={p.name}
         onClick={() => navigate(`/product/${p.slug}`)}
       />
@@ -171,9 +166,9 @@ const HomePage = () => {
         <h5 className="card-title title">{p.name}</h5>
         <div className="card-price">
           <h5 className="card-price-text">
-            {p.price.toLocaleString("en-US", {
+           Price: {p.price.toLocaleString("en-IN", {
               style: "currency",
-              currency: "USD",
+              currency: "INR",
             })}
           </h5>
         </div>

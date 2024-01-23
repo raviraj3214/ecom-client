@@ -24,9 +24,9 @@ const CartPage = () => {
       cart?.map((item) => {
         return total = total + item.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("en-IN", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       });
     } catch (error) {
       console.log(error);
@@ -120,7 +120,9 @@ const CartPage = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.name.substring(0,15)}...</h5>
                     <p className="card-text">{p.description.substring(0, 24)}...</p>
-                    <p className="card-text text-muted">Price: {p.price}$</p>
+                    <p className="card-text text-muted">Price: {p.price.toLocaleString("en-IN", {
+                      style: "currency",
+                      currency: "INR",})}</p>
                      <button
                                 className="btn btn-danger"
                                 onClick={() => removeCartItem(p._id)}

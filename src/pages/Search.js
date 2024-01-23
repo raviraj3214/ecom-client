@@ -3,7 +3,7 @@ import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 //import { AiFillWarning } from "react-icons/ai";
-
+import Spinner2 from "../components/Spinner/Spin";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
 
@@ -41,9 +41,9 @@ const Search = () => {
                 <div className="card-name-price">
                   <h5 className="card-title title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
+                    {p.price.toLocaleString("en-IN", {
                       style: "currency",
-                      currency: "USD",
+                      currency: "INR",
                     })}
                   </h5>
                 </div>
