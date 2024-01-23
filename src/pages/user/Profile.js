@@ -26,8 +26,11 @@ const Profile = () => {
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const instance = axios.create({
+      baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+    });
     try {
-      const { data } = await axios.put("/api/v1/auth/profile", {
+      const { data } = await instance.put("/api/v1/auth/profile", {
         name,
         email,
         password,

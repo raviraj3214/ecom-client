@@ -7,7 +7,10 @@ export default function useCategory() {
   //get cat
   const getCategories = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get("/api/v1/category/get-category");
       setCategories(data?.category);
     } catch (error) {
       console.log(error);

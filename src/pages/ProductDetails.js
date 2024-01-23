@@ -4,11 +4,6 @@ import axios from "axios";
 import { useCart } from "../context/cart";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import Spinner2 from "../components/Spinner/Spin";
-import { ScrollMenu,VisibilityContext } from 'react-horizontal-scrolling-menu';
-import 'react-horizontal-scrolling-menu/dist/styles.css';
-
-
 import "../styles/ProductDetailsStyles.css";
 
 const ProductDetails = () => {
@@ -16,8 +11,6 @@ const ProductDetails = () => {
   const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Added loading state
-
   const navigate = useNavigate();
 
   //initalp details
@@ -27,14 +20,14 @@ const ProductDetails = () => {
   //getProduct
   const getProduct = async () => {
     try {
-      setLoading(true); // Set loading to true while fetching data
-
-      const { data } = await axios.get(
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get(
         `/api/v1/product/get-product/${params.slug}`
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
-
     } catch (error) {
       console.log(error);
     }
@@ -42,32 +35,23 @@ const ProductDetails = () => {
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
     try {
-      const { data } = await axios.get(
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get(
         `/api/v1/product/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
-      setLoading(false); 
-
     } catch (error) {
       console.log(error);
     }
   };
-  if (loading) {
-    return (
-      <>       <Spinner2 />
-      </>
-        
-    );
-  }
-
-  else{
-  
   return (
     <Layout>
-      <div className="row container product-details col-12 col-md-8 mx-auto ">
-        <div className="card m-md-2 m-0 img-w" style={{ borderColor:"#fff" }} >
+      <div className="row container product-details col-12 col-md-8 mx-auto shadow">
+        <div className="card m-md-2 m-0 img-w" >
           <img
-            src={`/api/v1/product/product-photo/${product._id}`}
+            src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${product._id}`}
             className="card-img px-auto px-md-3 pt-md-4 w-100"
             alt={product.name}
           />
@@ -79,9 +63,9 @@ const ProductDetails = () => {
           <h6>Description : {product.description}</h6>
           <h6>
             Price :
-            {product?.price?.toLocaleString("en-IN", {
+            {product?.price?.toLocaleString("en-US", {
               style: "currency",
-              currency: "INR",
+              currency: "USD",
             })}
           </h6>
           <h6>Category : {product?.category?.name}</h6>
@@ -96,18 +80,16 @@ const ProductDetails = () => {
         </div>
       </div>
       <hr />
-      <div className="row container-fluid similar-products">
-        <h4 style={{textAlign:"center",}}>Similar Products</h4>
+      <div className="row container similar-products">
+        <h4>Similar Products</h4>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
-        <ScrollMenu
-        
-      >
+        <div className="d-flex flex-wrap mob">
           {relatedProducts?.map((p) => (
-            <div className="card m-3  card-mob" key={p._id}>
+            <div className="card m-2 shadow card-mob" key={p._id}>
               <img
-                src={`/api/v1/product/product-photo/${p._id}`}
+                src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
                 onClick={() => navigate(`/product/${p.slug}`)}
@@ -116,9 +98,9 @@ const ProductDetails = () => {
                 <div className="card-name-price">
                   <h5 className="card-title title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-IN", {
+                    {p.price.toLocaleString("en-US", {
                       style: "currency",
-                      currency: "INR",
+                      currency: "USD",
                     })}
                   </h5>
                 </div>
@@ -141,12 +123,10 @@ const ProductDetails = () => {
               </div>
             </div>
           ))}
-          </ScrollMenu>
-
+        </div>
       </div>
     </Layout>
-  );}
+  );
 };
-
 
 export default ProductDetails;

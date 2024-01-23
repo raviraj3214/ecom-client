@@ -21,7 +21,10 @@ const CreateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get("/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -46,7 +49,10 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
-      const { data } = axios.post(
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = instance.post(
         "/api/v1/product/create-product",
         productData
       );

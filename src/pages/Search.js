@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
 //import { AiFillWarning } from "react-icons/ai";
-import Spinner2 from "../components/Spinner/Spin";
 
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
@@ -32,9 +30,9 @@ const Search = () => {
           </div>
           <div className="d-flex flex-wrap">
             {values?.results.map((p) => (
-              <div className="card m-3 shadow" style={{ width: "18rem" }} key={p._id}>
+              <div className="card m-2 shadow" style={{ width: "18rem" }} key={p._id}>
               <img
-                src={`/api/v1/product/product-photo/${p._id}`}
+                src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top" 
                 alt={p.name}
                 onClick={() => navigate(`/product/${p.slug}`)}
@@ -43,9 +41,9 @@ const Search = () => {
                 <div className="card-name-price">
                   <h5 className="card-title title">{p.name}</h5>
                   <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-IN", {
+                    {p.price.toLocaleString("en-US", {
                       style: "currency",
-                      currency: "INR",
+                      currency: "USD",
                     })}
                   </h5>
                 </div>

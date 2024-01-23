@@ -23,7 +23,10 @@ const UpdateProduct = () => {
   //get single product
   const getSingleProduct = async () => {
     try {
-      const { data } = await axios.get(
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get(
         `/api/v1/product/get-product/${params.slug}`
       );
       setName(data.product.name);
@@ -45,7 +48,10 @@ const UpdateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
+      const { data } = await instance.get("/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -90,8 +96,11 @@ const UpdateProduct = () => {
   const handleDelete = async () => {
     try {
       let answer = window.prompt("Are You Sure want to delete this product ? ");
+      const instance = axios.create({
+        baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+      });
       if (!answer) return;
-      const { data } = await axios.delete(
+      const { data } = await instance.delete(
         `/api/v1/product/delete-product/${id}`
       );
       toast.success("Product DEleted Succfully");
@@ -153,7 +162,7 @@ const UpdateProduct = () => {
                 ) : (
                   <div className="text-center">
                     <img
-                      src={`/api/v1/product/product-photo/${id}`}
+                      src={`${process.env.REACT_APP_URL}/api/v1/product/product-photo/${id}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"

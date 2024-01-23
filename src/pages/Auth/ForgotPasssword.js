@@ -9,14 +9,16 @@ const ForgotPasssword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
-
+  const instance = axios.create({
+    baseURL: process.env.REACT_APP_URL, // Set a base URL for all requests from this instance
+  });
   const navigate = useNavigate();
 
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/forgot-password", {
+      const res = await instance.post("/api/v1/auth/forgot-password", {
         email,
         newPassword,
         answer,

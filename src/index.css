@@ -7,7 +7,7 @@
 }
 
 /* font-family: 'Poppins', sans-serif; */
-/* font-family: 'Playfair Display', serif; */
+/* font-family: 'Playfair Display', serif;bnm, */
 
 /* //navbar css */
 .navbar {
@@ -73,7 +73,7 @@
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }
-/* =================================
+/* ===============sdfgh==================
 ======== page not found css ======= */
 .pnf {
   display: flex;
@@ -142,37 +142,3 @@
   color: white;
   padding: 20px 0px;
 }
-
-/* Add this CSS for Chasing Dots Spinner */
-@keyframes lds-spinner {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.lds-spinner {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.lds-spinner div {
-  transform-origin: 40px 40px;
-  animation: lds-spinner 1.2s linear infinite;
-}
-
-.lds-spinner div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #fff;
-  margin: -4px 0 0 -4px;
-}
-
