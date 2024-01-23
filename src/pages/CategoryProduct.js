@@ -29,7 +29,7 @@ const CategoryProduct = () => {
       );
       setProducts(data?.products);
       setCategory(data?.category);
-      setLoading(true); // Set loading to true while fetching data
+      setLoading(false); // Set loading to false while fetching data
 
     } catch (error) {
       console.log(error);
