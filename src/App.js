@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,  Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policy from "./pages/Policy";
 import Pagenotfound from "./pages/Pagenotfound";
-import Register from "./pages/Auth/Register";
-import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register/index.js";
+import Login from "./pages/Auth/Login/index.js";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
-import ForgotPasssword from "./pages/Auth/ForgotPasssword";
+import ForgotPasssword from "./pages/Auth/ForgotPassword.js";
 import AdminRoute from "./components/Routes/AdminRoute";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import CreateCategory from "./pages/Admin/CreateCategory";
@@ -25,16 +25,27 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import { useAuth } from "../src/context/auth";
+
 function App() {
+  const [auth, setAuth] = useAuth();
+
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product/:slug" element={<ProductDetails />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/category/:slug" element={<CategoryProduct />} />
-        <Route path="/search" element={<Search />} />
+      {auth.token && auth.user._id ? (
+          <>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:slug" element={<ProductDetails />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/category/:slug" element={<CategoryProduct />} />
+          <Route path="/search" element={<Search />} />
+          </>
+        ) : (
+          <Route path="/" element={<Login />} />
+        )}
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
@@ -57,8 +68,8 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
-      <Toaster /> 
-          </>
+      <Toaster />
+    </>
   );
 }
 
