@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policy from "./pages/Policy";
 import Pagenotfound from "./pages/Pagenotfound";
-import Register from "./pages/Auth/Register/Register.js";
+import Register from "./pages/Auth/Register/Index.js";
 import Login from "./pages/Auth/Login/index.js";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
