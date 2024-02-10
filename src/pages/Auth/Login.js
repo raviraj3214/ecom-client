@@ -45,7 +45,7 @@ const Login = () => {
     <div className={`${styles.box} ${styles['login-body']}`}>
     <div className={styles.container}>
       <div className={styles['top-header']}>
-        <span className={styles.spanid} style={{ marginRight: '5px' }}>Not have an account?   <Link to="/register">Sign up </Link>  here</span>
+        <span className={styles.spanid} style={{ marginRight: '5px' }}>Not have an account?   <Link to="/register">Sign up </Link></span>
         <header>Login</header>
       </div>
       <form onSubmit={handleSubmit}>
