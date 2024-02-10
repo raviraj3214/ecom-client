@@ -127,7 +127,7 @@ const Register = () => {
               <i className="bx bx-key"></i>
             </div>
           </div>
-          <div className={`${styles['submit-btn']} mx-auto`}>
+          <div className={`${styles['submit-btn']} mx-lg-auto`}>
             <input type="submit" className={styles.submit} value="Register" />
           </div>
         </form>
