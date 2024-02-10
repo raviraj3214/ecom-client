@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate,Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import styles from "./Index.module.css";
+import styles from "../../styles/ForgotPassword";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

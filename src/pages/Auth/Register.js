@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate,Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import styles from './Index.module.css'; // Import your CSS module here
+import styles from '../../styles/Register.module.css'; // Import your CSS module here
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
