@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import styles from "./index.module.css";
+import styles from "./Index.module.css";
 
-const ForgotPasssword = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
@@ -89,6 +88,6 @@ const ForgotPasssword = () => {
         </div>
       </div>
     </div>
+  )
 };
-
-export default ForgotPasssword;
+export default ForgotPassword;

@@ -56,7 +56,6 @@
     overflow: hidden; /* Hide any overflow text */
     text-overflow: ellipsis;
   }
-  .ggvhbj{}
   @media screen and (max-width: 600px) {
     /* Your CSS styles for small screens go here */
      .mob {
