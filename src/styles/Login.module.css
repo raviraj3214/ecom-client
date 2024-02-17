@@ -92,3 +92,11 @@ label a{
     color: #fff;
     text-decoration: none;
 }
+.log{
+    text-decoration: none;
+    color:#ffff;
+}
+.log:hover{
+    color: #7a89b2;
+    text-decoration: underline;
+}

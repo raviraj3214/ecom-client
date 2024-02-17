@@ -82,7 +82,7 @@ const ForgotPassword = () => {
         <div className={styles.bottom}>
           <div className={styles.right}>
             <label>
-              <Link to="/login">Back to Login</Link>
+              <Link className={styles.log} to="/login">Back to Login</Link>
             </label>
           </div>
         </div>

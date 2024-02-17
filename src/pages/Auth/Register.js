@@ -134,7 +134,7 @@ const Register = () => {
         <div className={styles.bottom}>
           <div className={styles.right}>
             <label>
-              Already have an account? <Link to="/login">Login here</Link>
+              Already have an account? <Link className={styles.log} to="/login">Login here</Link>
             </label>
           </div>
         </div>

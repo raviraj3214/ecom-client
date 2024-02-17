@@ -45,7 +45,7 @@ const Login = () => {
     <div className={`${styles.box} ${styles['login-body']}`}>
     <div className={styles.container}>
       <div className={styles['top-header']}>
-        <span className={styles.spanid} style={{ marginRight: '5px' }}>Not have an account?   <Link to="/register">Sign up </Link></span>
+        <span className={styles.spanid} >Not have an account?   <Link className={styles.log} to="/register">Sign up </Link></span>
         <header>Login</header>
       </div>
       <form onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ const Login = () => {
       <div className={styles.bottom}>
         <div className={styles.right}>
           <label>
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Link className={styles.log} to="/forgot-password">Forgot password?</Link>
           </label>
         </div>
       </div>
