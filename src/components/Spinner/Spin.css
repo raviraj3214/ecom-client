@@ -34,3 +34,16 @@
       transform: rotate(1turn);
    }
 }
+@media (max-width: 600px) {
+  
+   .spinner {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      position: fixed;
+     top: 45%;
+     left: 44%;
+     
+   }
+
+  }
